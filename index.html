@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Story of Algonova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a202c;
+            background-image: radial-gradient(circle at top right, rgba(192, 132, 252, 0.1), transparent 50%),
+                              radial-gradient(circle at bottom left, rgba(74, 222, 128, 0.1), transparent 50%);
+            overflow: hidden;
+        }
+        .book-container {
+            width: 90vw;
+            height: 85vh;
+            max-width: 600px;
+            max-height: 850px;
+            position: relative;
+            perspective: 1500px;
+        }
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #333;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            transform-origin: left center;
+            transition: transform 1s ease-in-out;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            z-index: 1;
+            cursor: pointer;
+        }
+        .page.flipped {
+            transform: rotateY(-180deg);
+            z-index: 0;
+            cursor: default;
+        }
+        /* College Theme Backgrounds */
+        .theme-cover { background-color: #e2e8f0; }
+        .theme-graph { background-color: #f8fafc; background-image: linear-gradient(#cbd5e1 1px, transparent 1px), linear-gradient(to right, #cbd5e1 1px, #f8fafc 1px); background-size: 20px 20px; }
+        .theme-lined { background-color: #f1f5f9; background-image: repeating-linear-gradient(to bottom, #f1f5f9, #f1f5f9 24px, #cbd5e1 25px); }
+        .theme-blueprint { background-color: #334155; color: #e2e8f0; background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 20px 20px;}
+        .theme-blueprint .page-title, .theme-blueprint .highlight { color: #fde047; }
+        .theme-cork { background-color: #d2b48c; background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E"); }
+        .theme-notebook { background-color: #fefce8; background-image: repeating-linear-gradient(to bottom, #fefce8, #fefce8 24px, #d1d5db 25px); border-left: 3px solid #ef4444; }
+        
+        .page-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 1rem; }
+        .page-text { font-size: 1.05rem; line-height: 1.7; max-width: 95%; }
+        .handwritten { font-family: 'Kalam', cursive; }
+        .highlight { color: #8b5cf6; font-weight: 600; }
+        .back-arrow { position: absolute; top: 25px; left: 25px; width: 40px; height: 40px; padding: 8px; border-radius: 50%; cursor: pointer; transition: background-color 0.3s; z-index: 10; }
+        .back-arrow:hover { background-color: rgba(0,0,0,0.1); }
+        .theme-blueprint .back-arrow:hover { background-color: rgba(255,255,255,0.1); }
+        .group-photo {
+            width: 90%;
+            max-width: 450px;
+            border-radius: 8px;
+            border: 6px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 640px) {
+            .book-container {
+                height: 80vh;
+            }
+            .page {
+                padding: 1.5rem;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .page-text {
+                font-size: 0.95rem;
+            }
+            .back-arrow {
+                top: 15px;
+                left: 15px;
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <div class="book-container">
+        <!-- Page 1: The Cover -->
+        <div class="page theme-cover" data-page-num="0">
+            <h1 class="page-title text-5xl">The Story of Algonova</h1>
+            <p class="page-text text-xl mt-4">A journey of code, comebacks, and unbreakable friendship.</p>
+            <p class="absolute bottom-8 text-gray-500 animate-pulse">Click to open</p>
+        </div>
+
+        <!-- Chapter 1 -->
+        <div class="page theme-graph" data-page-num="1">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">Chapter 1: The Beginning</h2>
+            <p class="page-text">Our story started not in a boardroom, but in the halls of <span class="highlight">RNS IT College</span>. Four separate paths, all leading to an MCA, converged. We were just classmates then, unaware of the journey ahead.</p>
+            <div class="text-5xl mt-8">🎓 🤝 💡 💻</div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="page theme-cork" data-page-num="2">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">Chapter 2: What's in a Name?</h2>
+            <p class="page-text">We started as <span class="highlight">Algonova</span>, full of ambition. Life happened, things changed, and for a while, it felt like we were <span class="highlight">"Error 404: Team Not Found"</span>. But a true team is never 'not found'. It just reboots. We became OK4, and the rest is history.</p>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="page theme-lined" data-page-num="3">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">Chapter 3: The First Hurdle</h2>
+            <p class="page-text">Our first big test: a hackathon at <span class="highlight">Amazon</span>. We poured our hearts into it, but we lost. It was a tough pill to swallow, but it didn't break us. Instead, it ignited a fire.</p>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="page theme-graph" data-page-num="4">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">Chapter 4: The Comeback</h2>
+            <p class="page-text">We entered the <span class="highlight">Peer to Play</span> competition. We built our first blockchain project together, and we won! The taste of that first victory was unforgettable.</p>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div class="page theme-cork" data-page-num="5">
+             <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">Chapter 5: The First Photo</h2>
+            <p class="page-text">I still remember our first group photo after that win. The tired eyes, the big smiles. That picture wasn't just a picture; it was proof that we had become a team.</p>
+            <div class="text-5xl mt-8">🏆📸</div>
+        </div>
+
+        <!-- Chapter 6 -->
+        <div class="page theme-lined" data-page-num="6">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">Chapter 6: The Test of Resilience</h2>
+            <p class="page-text">The path wasn't a straight line. We faced another loss, reaching a final round only to fall short. But this is who we are. We got back up. We pushed harder. And we won again, proving that our <span class="highlight">"never give up"</span> attitude is our greatest strength.</p>
+        </div>
+        
+        <!-- Chapter 7 -->
+        <div class="page theme-blueprint" data-page-num="7">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-200"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">Chapter 7: The Fuel</h2>
+            <p class="page-text">Remember all those times we'd get tensed up? A simple "let's go for tea" was the solution. When I was low, you guys always lighted me up. Those moments are just as important as the wins. They're the code that holds our friendship together.</p>
+            <div class="text-5xl mt-8">☕️ ✨</div>
+        </div>
+
+        <!-- Chapter 8 -->
+        <div class="page theme-notebook" data-page-num="8">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title handwritten">A Note from Harsha</h2>
+            <p class="page-text handwritten">If I've ever done wrong, or if anything I've said has ever hurt you guys, I am truly sorry. My friendship with you all means the world to me. And a special thanks to <span class="highlight">Karan and Ashlesh</span> for helping sort things out between Gayathri and me. You are true friends.</p>
+        </div>
+
+        <!-- Final Page -->
+        <div class="page theme-blueprint" data-page-num="10">
+            <div class="back-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto text-gray-200"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></div>
+            <h2 class="page-title">One Last Thing...</h2>
+            <p class="page-text text-lg">Why do programmers always mix up Christmas and Halloween?</p>
+            <p class="page-text text-xl font-bold mt-4">Because Oct 31 == Dec 25!</p>
+            <p class="mt-12 font-bold text-2xl handwritten text-yellow-300">Happy Friendship Day, my friends!</p>
+        </div>
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const backArrows = document.querySelectorAll('.back-arrow');
+        let currentPage = 0;
+        let isAnimating = false;
+        const totalPages = pages.length;
+
+        pages.forEach((page, index) => {
+            page.style.zIndex = totalPages - index;
+            page.addEventListener('click', () => {
+                if (isAnimating || index !== currentPage || currentPage >= totalPages - 1) return;
+                isAnimating = true;
+                page.classList.add('flipped');
+                currentPage++;
+                setTimeout(() => { isAnimating = false; }, 1000);
+            });
+        });
+
+        backArrows.forEach(arrow => {
+            arrow.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (isAnimating || currentPage <= 0) return;
+                isAnimating = true;
+                currentPage--;
+                pages[currentPage].classList.remove('flipped');
+                setTimeout(() => { isAnimating = false; }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
